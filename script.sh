@@ -61,7 +61,13 @@ _=$(mysql -e "TRUNCATE performance_schema.events_statements_summary_by_digest; $
 mysql_digest_text=$(mysql -sN -e "SELECT digest_text FROM performance_schema.events_statements_summary_by_digest WHERE schema_name='test_db' AND digest_text NOT LIKE 'TRUNCATE %' LIMIT 1")
 
 echo "$mysql_digest_text"
+echo "mysql_digest_text=$mysql_digest_text" >> $GITHUB_OUTPUT
 
 vividcortex_digest_text=$(normalize_digest_text_like_vividcortex "$mysql_digest_text")
 echo "$vividcortex_digest_text"
+echo "vividcortex_digest_text=$vividcortex_digest_text" >> $GITHUB_OUTPUT
+
+vividcortex_digest_id=$(generate_vividcortex_id "$vividcortex_digest_text")
+echo "$vividcortex_digest_id"
+echo "vividcortex_digest_id=$vividcortex_digest_id" >> $GITHUB_OUTPUT
 
