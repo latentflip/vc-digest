@@ -7,9 +7,11 @@ inputs:
     required: true
     default: 'SELECT 1 FROM foo'
 outputs:
-  digest_id: # id of output
+  vividcortex_digest_id: # id of output
     description: 'Digest ID'
-  digest_text:
+  vividcortex_digest_text:
+    description: 'Digest Text'
+  mysql_digest_text:
     description: 'Digest Text'
 runs:
   using: 'docker'
