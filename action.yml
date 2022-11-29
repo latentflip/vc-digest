@@ -1,0 +1,18 @@
+# action.yml
+name: 'vc-digest'
+description: 'Generate vividcortex digest from query'
+inputs:
+  query:  # id of input
+    description: 'Query to digest'
+    required: true
+    default: 'SELECT 1 FROM foo'
+outputs:
+  digest_id: # id of output
+    description: 'Digest ID'
+  digest_text:
+    description: 'Digest Text'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.query }}
